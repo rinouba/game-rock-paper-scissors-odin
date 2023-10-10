@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game</title>
-   <script defer src="index.js"></script>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+    <script defer src="index.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- top -->
+
+      <div class="parent-top">
+        <h1>Rock Paper Scissor</h1>
+
+        <div class="results">
+          <div class="player">
+            <h5>Player</h5>
+            <div id="player-result">0</div>
+          </div>
+          <div class="final-result"></div>
+          <div class="computer">
+            <h5>Computer</h5>
+            <div id="computer-result">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!--  Middle-->
+
+      <div>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissor">Scissors</button>
+      </div>
+    </div>
+  </body>
 </html>

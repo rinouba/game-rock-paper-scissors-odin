@@ -1,76 +1,63 @@
+const choices = ["rock", "paper", "scissor"];
 
-const choices = ["rock","paper","scissors"]
+// empty values
 
 let playerPoints = 0;
 let computerPoints = 0;
 
-function game() {
+// inputs for results
 
-  for (let i = 0; i < 5; i++) {
-    playRound()
-    console.log(`Player Points : ${playerPoints}`)
-    console.log(`Computer Points : ${computerPoints}`)
-    console.log("--------------------------------------------------------")
-  }
-  if (playerPoints>computerPoints) {
-      alert("You Win!")
-  }else{
-    alert("You Lose!")
+const playerResult = document.querySelector("#player-result");
+const computerResult = document.querySelector("#computer-result");
+const finalResult = document.querySelector(".final-result");
+
+
+function startgame() {
+  let btns = document.querySelectorAll("button");
+  btns.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      playRound(item.id, compouterChoice());
+    });
+  });
+}
+
+function checkWin() {
+  playerResult.innerText = playerPoints;
+  computerResult.innerText = computerPoints;
+  // logic for who wins in 5 rounds
+  if (computerPoints === 5) {
+    alert("Computer win");
+    location.reload();
+  } else if (playerPoints === 5) {
+    alert("player win");
+    location.reload();
   }
 }
 
-
-function playRound() {
-  const playerSelected = playerChoice()
-  const computerSelected = compouterChoice()
-  if (playerSelected===choices[0]&&computerSelected===choices[0]) {
-    console.log("No one Win!")
+function playRound(choice1, choice2) {
+  if (choice1 === choice2) {
+    console.log("tie");
+    finalResult.innerText = "Tie!";
+    checkWin();
+  } else if (
+    (choice1 == "rock" && choice2 == "scissor") ||
+    (choice1 == "scissor" && choice2 == "paper") ||
+    (choice1 == "paper" && choice2 == "rock")
+  ) {
+    finalResult.innerText = "Player Win This Round";
+    playerPoints++;
+    checkWin();
+  } else {
+    finalResult.innerText = "Computer Win This Round";
+    computerPoints++;
+    checkWin();
   }
-  if (playerSelected===choices[0]&&computerSelected===choices[1]) {
-    console.log("You Lose!")
-    computerPoints++
-  }
-  if (playerSelected===choices[0]&&computerSelected===choices[2]) {
-    console.log("You Win!")
-    playerPoints++
-  }
-
-  if (playerSelected===choices[1]&&computerSelected===choices[0]) {
-    console.log("You Win!")
-    playerPoints++
-  }
-  if (playerSelected===choices[1]&&computerSelected===choices[1]) {
-    console.log("No One Win!")
-  }
-  if (playerSelected===choices[1]&&computerSelected===choices[2]) {
-    console.log("You Lose!")
-    computerPoints++
-  }
-
-  if (playerSelected===choices[2]&&computerSelected===choices[0]) {
-    console.log("You Lose!")
-    computerPoints++
-  }
-  if (playerSelected===choices[2]&&computerSelected===choices[1]) {
-    console.log("You win!")
-    playerPoints++
-  }
-  if (playerSelected===choices[2]&&computerSelected===choices[2]) {
-    console.log("No One Win!")
-  }
-  console.log(`Computer Selected : ${computerSelected}`)
-  console.log(`You Selected: ${playerSelected}`)
 }
 
-
-function playerChoice() {
-  // get input from user
-  const choicePlayer = prompt("Type rock or paper or scissors :")
-  return choicePlayer
-}
+// computer choice random choices
 
 function compouterChoice() {
-  return choices[Math.floor(Math.random()*choices.length)]
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
-game()
+startgame();
